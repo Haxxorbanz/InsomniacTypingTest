@@ -11,7 +11,8 @@ const ChallengeSection = ({
   wpm,
   timeRemaining,
   timerStarted,
-  startAgain
+  startAgain,
+  inputRef, // 👈 accept inputRef
 }) => {
   return (
     <div className="challenge-section-container">
@@ -28,6 +29,7 @@ const ChallengeSection = ({
         timeRemaining={timeRemaining}
         timerStarted={timerStarted}
         startAgain={startAgain}
+        inputRef={inputRef} // 👈 pass it down
       />
     </div>
   );

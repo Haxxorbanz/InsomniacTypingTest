@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./TryAgain.css";
 
 const TryAgain = ({ words, characters, wpm, startAgain }) => {
   const url = "https://shyamal2411.github.io/TypeTest/";
+
+  // ✅ Add keyboard shortcut (press "R" or "Enter" to retry)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "r" || event.key === "R" || event.key === "Enter") {
+        startAgain();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [startAgain]);
+
   return (
     <div data-aos="fade-up" className="try-again-container">
       <h1>Test Results</h1>
@@ -21,10 +34,10 @@ const TryAgain = ({ words, characters, wpm, startAgain }) => {
 
       <div>
         <button
-          onClick={() => startAgain()}
+          onClick={startAgain}
           className="end-buttons start-again-btn"
         >
-          Re-try
+          Re-try (R / Enter)
         </button>
         <button
           onClick={() =>
@@ -41,8 +54,7 @@ const TryAgain = ({ words, characters, wpm, startAgain }) => {
         <button
           onClick={() =>
             window.open(
-              "https://www.linkedin.com/cws/share?url=" +
-                url,
+              "https://www.linkedin.com/cws/share?url=" + url,
               "LinkedIn",
               "width=800,height=600"
             )

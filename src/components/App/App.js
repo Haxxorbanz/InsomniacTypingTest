@@ -18,16 +18,13 @@ const DefaultState = {
 };
 
 class App extends React.Component {
-    // state = {
-    //     selectedParagraph: "Hello World!",
-    //     testInfo: [],
-    //     timerStarted: false,
-    //     timeRemaining: TotalTime,
-    //     words: 0,
-    //     characters: 0,
-    //     wpm: 0,
-    // };
-    state = DefaultState;
+    constructor(props) {
+        super(props);
+        this.state = DefaultState;
+
+        // 👇 create a ref for the typing textarea
+        this.inputRef = React.createRef();
+    }
 
     fetchNewParagraphFallback = () => {
         const data =
@@ -43,7 +40,6 @@ class App extends React.Component {
             };
         });
 
-        // Update the testInfo in state
         this.setState({
             ...DefaultState,
             selectedParagraph: data,
@@ -55,7 +51,6 @@ class App extends React.Component {
         fetch("http://metaphorpsum.com/paragraphs/1/9")
             .then((response) => response.text())
             .then((data) => {
-                // Once the api results are here, break the selectedParagraph into test info
                 const selectedParagraphArray = data.split("");
                 const testInfo = selectedParagraphArray.map(
                     (selectedLetter) => {
@@ -66,7 +61,6 @@ class App extends React.Component {
                     }
                 );
 
-                // Update the testInfo in state
                 this.setState({
                     ...DefaultState,
                     selectedParagraph: data,
@@ -76,17 +70,24 @@ class App extends React.Component {
     };
 
     componentDidMount() {
-        // As soon as the component mounts, load the selected paragraph from the API
         this.fetchNewParagraphFallback();
     }
 
-    startAgain = () => this.fetchNewParagraphFallback();
+    startAgain = () => {
+        this.fetchNewParagraphFallback();
+
+        // 👇 focus the typing box after resetting
+        setTimeout(() => {
+            if (this.inputRef.current) {
+                this.inputRef.current.focus();
+            }
+        }, 0);
+    };
 
     startTimer = () => {
         this.setState({ timerStarted: true });
         const timer = setInterval(() => {
             if (this.state.timeRemaining > 0) {
-                // Change the WPM and Time Remaining
                 const timeSpent = TotalTime - this.state.timeRemaining;
                 const wpm =
                     timeSpent > 0
@@ -105,22 +106,6 @@ class App extends React.Component {
     handleUserInput = (inputValue) => {
         if (!this.state.timerStarted) this.startTimer();
 
-        /**
-         * 1. Handle the underflow case - all characters should be shown as not-attempted
-         * 2. Handle the overflow case - early exit
-         * 3. Handle the backspace case
-         *      - Mark the [index+1] element as notAttempted
-         *        (irrespective of whether the index is less than zero)
-         *      - But, don't forget to check for the overflow here
-         *        (index + 1 -> out of bound, when index === length-1)
-         * 4. Update the status in test info
-         *      1. Find out the last character in the inputValue and it's index
-         *      2. Check if the character at same index in testInfo (state) matches
-         *      3. Yes -> Correct
-         *         No  -> Incorrect (Mistake++)
-         * 5. Irrespective of the case, characters, words and wpm can be updated
-         */
-
         const characters = inputValue.length;
         const words = inputValue.split(" ").length;
         const index = characters - 1;
@@ -137,35 +122,22 @@ class App extends React.Component {
                 characters,
                 words,
             });
-
             return;
         }
 
         if (index >= this.state.selectedParagraph.length) {
-            this.setState({
-                characters,
-                words,
-            });
+            this.setState({ characters, words });
             return;
         }
 
-        // Make a copy
         const testInfo = this.state.testInfo;
         if (!(index === this.state.selectedParagraph.length - 1))
             testInfo[index + 1].status = "notAttempted";
 
-        // Check for mistake
         const isMistake = inputValue[index] === testInfo[index].testLetter;
-
-        // Update the testInfo
         testInfo[index].status = isMistake ? "correct" : "incorrect";
 
-        // Update the state
-        this.setState({
-            testInfo,
-            words,
-            characters,
-        });
+        this.setState({ testInfo, words, characters });
     };
 
     render() {
@@ -183,6 +155,7 @@ class App extends React.Component {
                     timeRemaining={this.state.timeRemaining}
                     timerStarted={this.state.timerStarted}
                     startAgain={this.startAgain}
+                    inputRef={this.inputRef}   // 👈 pass ref down
                 />
                 <Footer />
             </div>

@@ -12,11 +12,12 @@ const TestContainer = ({
   wpm,
   timeRemaining,
   timerStarted,
-  startAgain
+  startAgain,
+  inputRef, // 👈 accept inputRef
 }) => {
   return (
     <div className="test-container">
-      {/* Show the try again or start screen */}
+      {/* Show typing area until timer ends, then show Try Again */}
       {timeRemaining > 0 ? (
         <div data-aos="fade-up" className="typing-challenge-cont">
           <TypingContainer
@@ -28,6 +29,7 @@ const TestContainer = ({
             wpm={wpm}
             timeRemaining={timeRemaining}
             timerStarted={timerStarted}
+            inputRef={inputRef} // 👈 pass it down
           />
         </div>
       ) : (

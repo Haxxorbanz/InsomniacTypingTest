@@ -11,7 +11,8 @@ const TypingChallengeContainer = ({
   characters,
   wpm,
   timeRemaining,
-  timerStarted
+  timerStarted,
+  inputRef, // 👈 accept inputRef
 }) => {
   return (
     <div className="typing-container">
@@ -22,12 +23,13 @@ const TypingChallengeContainer = ({
         {/* Characters Typed */}
         <ChallengeDetailsCard cardName="Characters" cardValue={characters} />
 
-        {/* Mistakes */}
+        {/* WPM */}
         <ChallengeDetailsCard cardName="WPM" cardValue={wpm} />
       </div>
 
       <div className="typewriter-container">
         <TypingChallenge
+          inputRef={inputRef} // 👈 pass it as a prop
           testInfo={testInfo}
           selectedParagraph={selectedParagraph}
           onInputChange={onInputChange}
