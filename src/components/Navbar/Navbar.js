@@ -23,7 +23,7 @@ class Navbar extends Component {
             rel="noreferrer"
             className="nav-sg-link"
             href="https://github.com/shyamal2411/"
-            >SG Prajapati</a>
+            >Biot</a>
         </div>
       </div>
     );
