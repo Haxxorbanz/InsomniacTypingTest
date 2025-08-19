@@ -8,7 +8,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/sgprajapati/"
                 className="footer-link"
                 target="_blank"
-                rel="noreferrer">Let's Connect!</a>
+                rel="noreferrer">@ENCREDVX</a>
         </div>
     );
 };

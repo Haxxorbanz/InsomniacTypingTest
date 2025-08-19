@@ -15,7 +15,7 @@ class Navbar extends Component {
             className="flash-logo-text"
             href="https://shyamal2411.github.io/TypeTest/"
             rel="roreferrer"
-            >Type-Test</a>
+            >Typing-Test</a>
         </div>
         <div className="nav-right">
             <a 
@@ -23,7 +23,7 @@ class Navbar extends Component {
             rel="noreferrer"
             className="nav-sg-link"
             href="https://github.com/shyamal2411/"
-            >Biot</a>
+            >Web-slinging</a>
         </div>
       </div>
     );
