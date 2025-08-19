@@ -7,7 +7,7 @@ const TypingChallenge = ({
   onInputChange,
   timeRemaining,
   timerStarted,
-  inputRef,   // 👈 receive inputRef as a prop
+  inputRef,
 }) => {
   return (
     <div className="typing-challenge">
@@ -34,7 +34,7 @@ const TypingChallenge = ({
 
         <div className="textarea-right">
           <textarea
-            ref={inputRef}   // 👈 attach ref here
+            ref={inputRef}
             onChange={(e) => onInputChange(e.target.value)}
             className="textarea"
             placeholder="Start typing here"

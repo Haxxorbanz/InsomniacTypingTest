@@ -12,7 +12,7 @@ const TypingChallengeContainer = ({
   wpm,
   timeRemaining,
   timerStarted,
-  inputRef, // 👈 accept inputRef
+  inputRef, 
 }) => {
   return (
     <div className="typing-container">
@@ -29,7 +29,7 @@ const TypingChallengeContainer = ({
 
       <div className="typewriter-container">
         <TypingChallenge
-          inputRef={inputRef} // 👈 pass it as a prop
+          inputRef={inputRef} 
           testInfo={testInfo}
           selectedParagraph={selectedParagraph}
           onInputChange={onInputChange}
