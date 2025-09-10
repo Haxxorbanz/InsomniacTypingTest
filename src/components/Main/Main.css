@@ -8,6 +8,7 @@
     font-family: "Bangers", cursive;
     margin: 0;
     flex-wrap: wrap;
+    position: relative; 
 }
 
 .landing-header {
@@ -21,32 +22,60 @@
     letter-spacing: 4px;
 }
 
-.typewriter-color{
+.typewriter-color {
     color: #F33809;
 }
 
+.flash-wrapper {
+    position: relative;  
+    display: inline-block;
+    overflow: hidden;       
+    border-radius: 12px;
+    cursor: pointer;
+}
+
 .flash-image {
-    width: 40vw;
+    width: 100%;
+    height: auto;
+    max-width: 500px;
+    object-fit: contain;  
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: center center; /* zooms from middle */
 }
 
-@media (max-width: 800px) {
-    .landing-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .flash-image {
-        width: 80vw;
-    }
-
-    .landing-header {
-        margin-top: 15px;
-        text-align: center;
-        font-size: 45px;
-    }
-
-    .typewriter-container {
-        text-align: center;
-        font-size:45px;
-    }
+.flash-wrapper:hover .flash-image {
+    transform: scale(1.08);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    cursor: zoom-in;
 }
+
+
+.click-me-overlay {
+    position: absolute;
+    bottom: 70%;          
+    right: 10%;            
+    width: 80vw;          
+    max-width: 260px;    
+    height: auto;
+    pointer-events: none; 
+    background: transparent;
+}
+
+@media (max-width: 768px) {
+  .click-me-overlay {
+    bottom: 70%;   
+    right: 10%;         
+    width: 80vw;        
+    max-width: 200px;  
+  }
+}
+
+@media (max-width: 480px) {
+  .click-me-overlay {
+    bottom: 70%;        
+    right: 10%;         
+    width: 80vw;        
+    max-width: 150px;   
+  }
+}
+

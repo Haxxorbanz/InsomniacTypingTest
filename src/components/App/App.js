@@ -54,19 +54,16 @@ class App extends React.Component {
   }
 
   handleKeyDown = (e) => {
-    // ✅ Block Shift+Enter completely
     if (e.key === "Enter" && e.shiftKey) {
       e.preventDefault();
       return;
     }
 
-    // Ctrl+Enter → reset
     if (e.ctrlKey && e.key === "Enter") {
       e.preventDefault();
       this.startAgain();
     }
 
-    // After time is up → allow retry
     if (!this.state.timerStarted && this.state.timeRemaining === 0) {
       if (e.key === "r" || e.key === "R" || e.key === "Enter") {
         e.preventDefault();
@@ -113,7 +110,6 @@ class App extends React.Component {
   };
 
   handleUserInput = (inputValue) => {
-    // 🚨 If input contains ANY newline → reset correctness entirely
     if (/\n/.test(inputValue)) {
       const resetTestInfo = this.state.selectedParagraph.split("").map(
         (letter) => ({
@@ -127,7 +123,7 @@ class App extends React.Component {
         words: 0,
         characters: 0,
       });
-      return; // stop here, don’t continue
+      return;
     }
 
     if (!this.state.timerStarted) this.startTimer();
@@ -154,23 +150,38 @@ class App extends React.Component {
     this.setState({ testInfo, words, characters });
   };
 
+  // ✅ Scroll to Typing Test section
+  scrollToTest = () => {
+    const section = document.getElementById("typetest");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   render() {
     return (
       <div className="app">
         <Navbar />
-        <Main />
-        <ChallengeSection
-          selectedParagraph={this.state.selectedParagraph}
-          testInfo={this.state.testInfo}
-          onInputChange={this.handleUserInput}
-          words={this.state.words}
-          characters={this.state.characters}
-          wpm={this.state.wpm}
-          timeRemaining={this.state.timeRemaining}
-          timerStarted={this.state.timerStarted}
-          startAgain={this.startAgain}
-          inputRef={this.inputRef}
-        />
+        
+        {/* Pass scrollToTest as a prop to Main */}
+        <Main scrollToTest={this.scrollToTest} />
+
+        {/* Section with id so scroll works */}
+        <section id="typetest">
+          <ChallengeSection
+            selectedParagraph={this.state.selectedParagraph}
+            testInfo={this.state.testInfo}
+            onInputChange={this.handleUserInput}
+            words={this.state.words}
+            characters={this.state.characters}
+            wpm={this.state.wpm}
+            timeRemaining={this.state.timeRemaining}
+            timerStarted={this.state.timerStarted}
+            startAgain={this.startAgain}
+            inputRef={this.inputRef}
+          />
+        </section>
+
         <Footer />
       </div>
     );
