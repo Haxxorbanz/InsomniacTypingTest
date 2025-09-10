@@ -20,26 +20,25 @@ const Main = ({ scrollToTest }) => {
             </div>
             
             <div className="landing-right">
-                {/* ✅ Wrapper makes hover/zoom clean */}
-                <div 
-                    className="flash-wrapper" 
-                    data-aos="fade-left" 
-                    onClick={scrollToTest}
-                >
-                    <img
-                        className="flash-image"
-                        src={flash}
-                        alt="hero"
-                    />
+            {/* ✅ Wrapper for hero + overlays */}
+            <div className="flash-wrapper" data-aos="fade-left">
+                <button className="flash-button" onClick={scrollToTest}>
+                <img
+                    className="flash-image"
+                    src={flash}
+                    alt="hero"
+                />
 
-                    {/* ✅ Click Me Overlay */}
-                    <img 
-                        className="click-me-overlay" 
-                        src={clickMe} 
-                        alt="Click Me" 
-                    />
-                </div>
+                {/* ✅ Click Me Overlay */}
+                <img 
+                    className="click-me-overlay" 
+                    src={clickMe} 
+                    alt="Click Me" 
+                />
+                </button>
             </div>
+        </div>
+
         </div>
     );
 };

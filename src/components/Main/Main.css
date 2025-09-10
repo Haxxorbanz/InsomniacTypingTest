@@ -1,81 +1,151 @@
+/* ✅ Landing Section */
 .landing-container {
-    display: flex;
-    min-height: 90vh;
-    justify-content: space-between;
-    align-items: center;
-    color: #000000;
-    padding: 0 32px;
-    font-family: "Bangers", cursive;
-    margin: 0;
-    flex-wrap: wrap;
-    position: relative; 
+  display: flex;
+  min-height: 90vh;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  padding: 0 32px;
+  font-family: "Bangers", cursive;
+  margin: 0;
+  flex-wrap: wrap;
+  position: relative;
+  gap: 24px;
 }
 
+/* ✅ Headings */
 .landing-header {
-    font-size: 70px;
-    letter-spacing: 4px;
-    margin: 0;
+  font-size: 70px;
+  letter-spacing: 4px;
+  margin: 0;
 }
 
 .typewriter-container {
-    font-size: 64px;
-    letter-spacing: 4px;
+  font-size: 64px;
+  letter-spacing: 4px;
 }
 
 .typewriter-color {
-    color: #F33809;
+  color: #F33809;
 }
 
 .flash-wrapper {
-    position: relative;  
-    display: inline-block;
-    overflow: hidden;       
-    border-radius: 12px;
-    cursor: pointer;
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+  border-radius: 0; 
+  background: inherit; 
 }
 
+.flash-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+
 .flash-image {
-    width: 100%;
-    height: auto;
-    max-width: 500px;
-    object-fit: contain;  
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    transform-origin: center center; /* zooms from middle */
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  object-fit: contain;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transform-origin: center center;
+  display: block;
+  background: transparent; /* no unwanted background */
 }
 
 .flash-wrapper:hover .flash-image {
-    transform: scale(1.08);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
-    cursor: zoom-in;
+  transform: scale(1.08);
+  cursor: pointer;
 }
 
 
+/* ✅ Overlay (arrow/label) */
 .click-me-overlay {
-    position: absolute;
-    bottom: 70%;          
-    right: 10%;            
-    width: 80vw;          
-    max-width: 260px;    
-    height: auto;
-    pointer-events: none; 
-    background: transparent;
+  position: absolute;
+  bottom: 68%;
+  right: 12%;
+  width: 70vw;
+  max-width: 220px;
+  height: auto;
+  pointer-events: none; /* don’t block clicks */
+  user-select: none;
+  background: transparent;
+  animation: bounce 1.5s infinite;
+}
+
+/* ✅ Overlay animation */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 1024px) {
+  .landing-header {
+    font-size: 56px;
+  }
+
+  .typewriter-container {
+    font-size: 48px;
+  }
+
+  .flash-image {
+    max-width: 420px;
+  }
+
+  .click-me-overlay {
+    max-width: 180px;
+    bottom: 70%;
+    right: 8%;
+  }
 }
 
 @media (max-width: 768px) {
+  .landing-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .landing-header {
+    font-size: 48px;
+  }
+
+  .typewriter-container {
+    font-size: 36px;
+  }
+
+  .flash-image {
+    max-width: 350px;
+  }
+
   .click-me-overlay {
-    bottom: 70%;   
-    right: 10%;         
-    width: 80vw;        
-    max-width: 200px;  
+    max-width: 150px;
+    bottom: 72%;
+    right: 6%;
   }
 }
 
 @media (max-width: 480px) {
+  .landing-header {
+    font-size: 36px;
+  }
+
+  .typewriter-container {
+    font-size: 28px;
+  }
+
+  .flash-image {
+    max-width: 280px;
+  }
+
   .click-me-overlay {
-    bottom: 70%;        
-    right: 10%;         
-    width: 80vw;        
-    max-width: 150px;   
+    max-width: 120px;
+    bottom: 74%;
+    right: 4%;
   }
 }
-
