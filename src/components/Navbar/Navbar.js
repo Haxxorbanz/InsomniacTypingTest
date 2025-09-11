@@ -13,7 +13,7 @@ class Navbar extends Component {
           alt="logo" />
           <a 
             className="flash-logo-text"
-            href="https://shyamal2411.github.io/TypeTest/"
+            href="https://insomniac-typing-test.vercel.app/"
             rel="roreferrer"
             >Typing-Test</a>
         </div>
@@ -22,7 +22,7 @@ class Navbar extends Component {
             target="_blank"
             rel="noreferrer"
             className="nav-sg-link"
-            href="https://github.com/shyamal2411/"
+            href="https://github.com/Haxxorbanz/InsomniacTypingTest.git"
             >Web-slinging</a>
         </div>
       </div>
