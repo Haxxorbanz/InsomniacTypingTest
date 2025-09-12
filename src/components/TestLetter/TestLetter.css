@@ -9,7 +9,7 @@
 }
 
 .test-letter-not-attempted {
-  color: #0a0908;
+  color: #ffffff;
 }
 
 .test-letter-incorrect {
@@ -17,5 +17,5 @@
 }
 
 .test-letter-correct {
-  color: #558b2f;
+  color: #5ece0e;
 }

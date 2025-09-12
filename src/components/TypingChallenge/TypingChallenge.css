@@ -5,35 +5,40 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 35px;
+  padding: 10px;
 }
 
+/* Timer */
 .timer-container {
-  margin: 16px;
-  /* margin-bottom: 0; */
+  margin: 12px;
 }
 
 .timer {
-  font-size: 45px;
-  font-weight: 600;
+  font-size: 40px;
+  font-weight: 700;
   margin: 0;
   text-align: center;
+  color: #ffd700; /* gold highlight */
+  text-shadow: 0 0 8px #e23636; /* Spiderman red glow */
 }
 
 .timer-info {
   margin: 0;
-  margin-top: -10px;
-  color: #dd5044;
-  font-size: 28px;
+  margin-top: -8px;
+  color: #e23636;
+  font-size: 22px;
   text-align: center;
   font-weight: 800;
 }
 
+/* Text areas container */
 .textarea-container {
   margin: 16px;
   display: flex;
   flex-direction: row;
   flex-grow: 1;
   width: 80%;
+  gap: 16px;
 }
 
 .textarea-left,
@@ -43,41 +48,99 @@
   flex-grow: 1;
 }
 
+/* Paragraph & Input */
 .textarea {
   text-align: left;
   flex-grow: 1;
-  height: 360px;
-  font-size: 20px;
+  height: 320px;
+  font-size: 18px;
   width: 100%;
-  padding: 10px;
-  line-height: 20px;
-  flex-wrap: wrap;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 12px;
+  line-height: 1.5;
+  border: 2px solid #0c5aa6; /* Spiderman blue */
+  border-radius: 6px;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: scroll;
 }
 
 .textarea:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 20px rgba(226, 54, 54, 0.4);
+}
+
+.textarea:focus {
+  border-color: #ffd700;
+  box-shadow: 0 0 10px #ffd700;
+  outline: none;
 }
 
 .textarea::-webkit-scrollbar {
   display: none;
 }
-
 .textarea {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
+/* Paragraph text */
 .test-paragraph {
-  font-size: 12px;
-  background: #0000;
+  font-size: 18px;
+  background: #1a1a1a;
+  border: 2px dashed #e23636;
+  border-radius: 6px;
   padding: 12px;
-  text-decoration: none;
+  color: #ffffff !important;
   user-select: none;
-/* display: flex;
-    flex-direction: row; */
+}
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .textarea-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .textarea-left,
+  .textarea-right {
+    width: 100%;
+  }
+
+  .textarea {
+    height: 200px;
+    font-size: 16px;
+  }
+
+  .timer {
+    font-size: 32px;
+  }
+
+  .timer-info {
+    font-size: 18px;
+  }
+
+  .test-paragraph {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer {
+    font-size: 26px;
+  }
+
+  .timer-info {
+    font-size: 16px;
+  }
+
+  .textarea {
+    height: 160px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .test-paragraph {
+    font-size: 12px;
+  }
 }

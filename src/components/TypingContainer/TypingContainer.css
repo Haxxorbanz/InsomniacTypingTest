@@ -1,16 +1,78 @@
 .typing-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #111; /* dark clean background */
+  color: #fff;
+  border-radius: 8px;
 }
 
+/* Details (Words, Characters, WPM cards) */
 .details-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+    
+.details-container .challenge-card {
+  background: #1a1a1a;
+  border: 2px solid #e23636; /* Spiderman red */
+  border-radius: 6px;
+  padding: 12px 18px;
+  min-width: 100px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
+.details-container .challenge-card:hover {
+  transform: scale(1.05);
+  border-color: #0c5aa6; /* Spiderman blue hover */
+}
+
+/* Typing test area */
 .typewriter-container {
-    display: flex;
-    flex-grow: 1;
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 900px;
+  justify-content: center;
+}
+
+/* 📱 Responsive tweaks */
+@media (max-width: 768px) {
+  .details-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .details-container .challenge-card {
+    width: 80%;
+    margin-bottom: 12px;
+  }
+
+  .typewriter-container {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-container .challenge-card {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .typewriter-container {
+    padding: 0 8px;
+  }
 }
