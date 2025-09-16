@@ -5,11 +5,15 @@ const TestLetter = ({ individualLetterInfo }) => {
   const statusClassName = {
     correct: "test-letter-correct",
     incorrect: "test-letter-incorrect",
-    notAttempted: "test-letter-not-attempted"
+    notAttempted: "test-letter-not-attempted",
   }[individualLetterInfo.status];
 
   return (
-    <span className={`test-letter ${statusClassName}`}>
+    <span
+      className={`test-letter ${statusClassName} ${
+        individualLetterInfo.status === "notAttempted" ? "current-letter" : ""
+      }`}
+    >
       {individualLetterInfo.testLetter}
     </span>
   );
